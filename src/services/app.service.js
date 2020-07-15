@@ -12,7 +12,6 @@ const setPost = (items) => {
 export const addPost = (item) => {
   const items = getPost();
   item.id = items.length + 1;
-  console.log('newItems', item );
 
   items.push(item);
   setPost(items);

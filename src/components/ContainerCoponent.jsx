@@ -11,9 +11,9 @@ import {
 } from "../redux/action/post.action";
 
 function ContainerCoponent(props) {
-  const { addPost, updatePost, deletePost, getPost, data=[] } = props;
+  const { addPost, updatePost, deletePost, getPost, data, loading } = props;
   const [selectedPost, setselectedPost] = useState({});
-
+  const [posts, setPosts] = useState([]);
 
   const editHandler = (post, id) => {
    setselectedPost({
@@ -28,7 +28,6 @@ function ContainerCoponent(props) {
   };
 
   const submitHandler = (data, index) => {
-    console.log(data);
     if (data.id) {
       updatePost(data, index);
     } else {
@@ -39,16 +38,22 @@ function ContainerCoponent(props) {
 
   useEffect(() => {
     getPost();
-  }, []);
- 
+  }, [getPost]);
+
+  useEffect(() => {
+    setPosts(data);
+  }, [data]);
+
   return (
     <div>
       <FormComponent submitHandler={submitHandler} data={selectedPost}></FormComponent>
-      <h1>Total Post {data ? data.length : 0}</h1>
+  <span className="float-right small">{loading ? 'Updating ....':''}</span>
+
+      <h1>Total Post {posts ? posts.length : 0} </h1>
       <RecordComponent
         deleteHandler={deleteHandler}
         editHandler={editHandler}
-        post={data}
+        post={posts}
       ></RecordComponent>
     </div>
   );
@@ -56,6 +61,7 @@ function ContainerCoponent(props) {
 
 const mapStateToProps = (state) => ({
   data: state.post.list,
+  loading: state.post.loading
 });
 
 const mapDispatchToProps = (dispatch) => ({

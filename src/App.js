@@ -1,5 +1,4 @@
 import React from "react";
-import logo from "./logo.svg";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import ContainerCoponent from "./components/ContainerCoponent";
@@ -8,7 +7,7 @@ function App() {
   return (
     <>
       <nav className="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-        <a className="navbar-brand" href="#">
+        <a className="navbar-brand" href="/">
           CRUD - React App
         </a>
         <button

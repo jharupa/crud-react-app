@@ -26,7 +26,6 @@ function FormComponent(props) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(userId, body, title, id);
     if (userId && body && title) {
       submitHandler({
         id: data.id,

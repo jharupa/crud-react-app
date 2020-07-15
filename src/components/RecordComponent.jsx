@@ -7,6 +7,7 @@ function RecordComponent(props) {
       <table className="table">
         <thead>
           <tr>
+            <th scope="col"> ID</th>
             <th scope="col">User ID</th>
             <th scope="col">Title</th>
             <th scope="col">Body</th>
@@ -16,7 +17,8 @@ function RecordComponent(props) {
         <tbody>
           {post && post.length ? post.map((item, index) => (
             <tr key={index}>
-              <th scope="row">{item.userId}</th>
+              <th scope="row">{item.id}</th>
+              <td>{item.userId}</td>
               <td>{item.title}</td>
               <td>{item.body}</td>
               <td>
